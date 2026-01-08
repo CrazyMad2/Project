@@ -1,0 +1,21 @@
+*.iml
+.gradle/
+/local.properties
+/.idea/
+/build/
+/captures
+.externalNativeBuild/
+.cxx/
+*.apk
+*.ap_
+*.aab
+*.log
+*.hprof
+.DS_Store
+Thumbs.db
+
+# Android Studio
+out/
+
+# Firebase
+**/google-services.json
