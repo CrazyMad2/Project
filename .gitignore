@@ -19,3 +19,11 @@ out/
 
 # Firebase
 **/google-services.json
+
+# Local properties (Android SDK path)
+local.properties
+**/local.properties
+
+# Firebase (NO subir)
+google-services.json
+**/google-services.json
