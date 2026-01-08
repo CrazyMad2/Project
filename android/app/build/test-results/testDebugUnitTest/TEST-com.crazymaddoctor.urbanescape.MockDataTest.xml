@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.crazymaddoctor.urbanescape.MockDataTest" tests="2" skipped="0" failures="0" errors="0" timestamp="2026-01-08T17:02:23" hostname="codespaces-35fd80" time="0.091">
+  <properties/>
+  <testcase name="normalize_removes_accents_and_lowercases" classname="com.crazymaddoctor.urbanescape.MockDataTest" time="0.083"/>
+  <testcase name="getCities_filters_by_query" classname="com.crazymaddoctor.urbanescape.MockDataTest" time="0.006"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>
