@@ -9,13 +9,32 @@ import androidx.compose.foundation.lazy.items
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.unit.dp
+import androidx.lifecycle.viewmodel.compose.viewModel
 import com.crazymaddoctor.urbanescape.data.mock.MockData
+import com.crazymaddoctor.urbanescape.di.ServiceLocator
+import com.crazymaddoctor.urbanescape.ui.viewmodel.CitySelectViewModel
+import com.crazymaddoctor.urbanescape.ui.viewmodel.CitySelectViewModelFactory
 
 @Composable
 fun CitySelectScreen(onCitySelected: (String) -> Unit) {
+    val appContext = LocalContext.current.applicationContext
+    val repo = remember { ServiceLocator.provideSettingsRepository(appContext) }
+    val vm: CitySelectViewModel = viewModel(factory = CitySelectViewModelFactory(repo))
+
     var query by remember { mutableStateOf("") }
     val cities = remember(query) { MockData.getCities(query) }
+
+    val navigateToCityId by vm.navigateToCityId.collectAsState()
+
+    LaunchedEffect(navigateToCityId) {
+        val cityId = navigateToCityId
+        if (!cityId.isNullOrBlank()) {
+            vm.consumeNavigation()
+            onCitySelected(cityId)
+        }
+    }
 
     Scaffold(
         topBar = { TopAppBar(title = { Text("Elige ciudad") }) }
@@ -42,7 +61,7 @@ fun CitySelectScreen(onCitySelected: (String) -> Unit) {
                     Card(
                         modifier = Modifier
                             .fillMaxWidth()
-                            .clickable { onCitySelected(city.id) }
+                            .clickable { vm.onCitySelected(city.id) }
                     ) {
                         Column(Modifier.padding(12.dp)) {
                             Text(city.name, style = MaterialTheme.typography.titleMedium)
