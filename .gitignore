@@ -27,3 +27,6 @@ local.properties
 # Firebase (NO subir)
 google-services.json
 **/google-services.json
+
+# Build outputs
+**/build/
